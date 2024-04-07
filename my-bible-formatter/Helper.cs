@@ -42,7 +42,7 @@ namespace my_bible_formatter
                 int verse = int.Parse(part[3]);
 
                 // The remaining part of the string
-                string text = part[4];
+                string text = part[4].Substring(2); // substring to remove the first \" character
 
                 BibleVerse bv = new()
                 {
@@ -56,6 +56,13 @@ namespace my_bible_formatter
             }
 
             return bibleVerses;
+        }
+        public static void SaveFormattedBible(List<BibleVerse>? bible, string destination)
+        {
+            string json = JsonSerializer.Serialize(bible);
+
+            // Write the JSON string to a file
+            File.WriteAllText(destination, json);
         }
     }
 }
