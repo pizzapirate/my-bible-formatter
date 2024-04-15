@@ -14,7 +14,7 @@ namespace my_bible_formatter
 {
     public static class Helper
     {
-        public static List<BibleVerse>? ListifyBible(string path)
+        public static List<BibleVerse>? KJVListifyBible(string path)
         {
             string jsonBible = File.ReadAllText(path);
 
@@ -54,6 +54,16 @@ namespace my_bible_formatter
 
                 bibleVerses.Add(bv);
             }
+
+            return bibleVerses;
+        }
+        public static List<BibleVerse>? XMLListifyBible(string path)
+        {
+            List<BibleVerse> bibleVerses = [];
+
+            var raw = XDocument.Load(path);
+
+
 
             return bibleVerses;
         }

@@ -2,11 +2,16 @@
 using my_bible_formatter.Models;
 using System.Reflection;
 
-string pathToGodsWord = @"C:\Users\mvell\source\repos\my-bible-formatter\my-bible-formatter\kjv.json";
+string path = @"C:\Users\mvellozzo\source\repos\testEnv\my-bible-formatter\my-bible-formatter\asv.xml";
 
-var bible = Helper.ListifyBible(pathToGodsWord);
+//var bible = Helper.KJVListifyBible(pathToGodsWord);
 
-Helper.SaveFormattedBible(bible, @"C:\Users\mvell\Downloads\formatted-bible.json");
+var bible = Helper.XMLListifyBible(path);
+
+//Helper.SaveFormattedBible(bible, @"C:\Users\mvell\Downloads\formatted-bible.json");
+
+
+
 
 Console.WriteLine("Done.");
 
