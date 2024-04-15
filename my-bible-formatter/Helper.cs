@@ -61,7 +61,23 @@ namespace my_bible_formatter
         {
             List<BibleVerse> bibleVerses = [];
 
-            var raw = XDocument.Load(path);
+            XDocument doc = XDocument.Load(path);
+
+            // Iterate over each <VERS> element
+            foreach (var verse in doc.Descendants("VERS"))
+            {
+                BibleVerse bv = new();
+
+                // Get the bnumber, cnumber, and vnumber attributes
+                bv.Book = Convert.ToInt16(verse.Parent.Parent.Attribute("bnumber")?.Value); // <BIBLEBOOK> element
+                bv.Chapter = Convert.ToInt16(verse.Parent.Attribute("cnumber")?.Value); // <CHAPTER> element
+                bv.Verse = Convert.ToInt16(verse.Attribute("vnumber")?.Value);
+
+                // Get the verse text
+                bv.Text = verse.Value;
+
+                bibleVerses.Add(bv);
+            }
 
 
 
